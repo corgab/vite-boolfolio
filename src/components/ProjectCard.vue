@@ -1,10 +1,14 @@
 <template>
   <div class="container my-4">
     <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div class="col" v-for="project in projects" :key="project.id">
+      <div class="col" v-for=" (project,i) in projects" :key="project.id">
         <div class="card h-100">
           <div class="card-header">
-            {{ project.type_id }}
+              <ul class="d-flex gap-1 justify-content-start">
+                <li v-for="technology in project.technologies">
+                  {{ technology.title }}
+                </li>
+              </ul>
           </div>
           <div class="card-body">
             <h5 class="card-title">{{ project.title }}</h5>
@@ -17,11 +21,11 @@
       </div>
     </div>
     <div class="my-4" v-if="lastPage > 1">
-      <ul class="d-flex gap-5 justify-content-center">
-         <li @click="changePage(n)" v-for="n in lastPage" :key="n" :class="n === currentPage ? 'bg-warning' : 'bg-white'" class="cursor-pointer btn">
+      <div class="d-flex gap-5 justify-content-center">
+         <p @click="changePage(n)" v-for="n in lastPage" :key="n" :class="n === currentPage ? 'bg-warning' : 'bg-white'" class="cursor-pointer btn">
           {{ n }}
-        </li>
-      </ul>
+         </p>
+      </div>
     </div>
   </div>
 </template>
@@ -37,6 +41,7 @@ export default {
   data() {
     return {
       projects: [],
+      // technologies: [],
       currentPage: 1,
       lastPage: null
     }
@@ -55,8 +60,9 @@ export default {
         }
       })
         .then((res) => {
-          console.log(res.data)
+          console.log(res.data.result.data)
           this.projects = res.data.result.data
+          // this.technologies = res.data.result.data.technologies
           this.lastPage = res.data.result.last_page
         })
     }
@@ -70,6 +76,9 @@ export default {
 <style lang="scss" scoped>
 ul, li {
   list-style: none;
+  margin: 0;
+  padding: 0;
+
 }
 
 .cursor-pointer {
