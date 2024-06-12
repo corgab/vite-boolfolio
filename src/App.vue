@@ -1,10 +1,10 @@
 <script>
-import AppContent from './components/AppContent.vue';
+import ProjectCard from './components/ProjectCard.vue';
 
 
 export default {
   components: {
-    AppContent
+    ProjectCard
   },
   data() {
     return {
@@ -18,7 +18,7 @@ export default {
 <template>
 
   <div id="app">
-    <AppContent />
+    <ProjectCard />
   </div>
 
 </template>
