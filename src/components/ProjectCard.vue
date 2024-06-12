@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div class="container my-4">
     <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div class="col" v-for="project in projects">
+      <div class="col" v-for="project in projects" :key="project.id">
         <div class="card h-100">
           <div class="card-header">
             {{ project.type_id }}
@@ -15,6 +15,13 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="my-4">
+      <ul class="d-flex gap-5 justify-content-center">
+         <li @click="changePage(n)" v-for="n in lastPage" :key="n" class="cursor-pointer">
+          {{ n }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -48,7 +55,7 @@ export default {
         }
       })
         .then((res) => {
-          console.log(res.data.result.data)
+          console.log(res.data)
           this.projects = res.data.result.data
           this.lastPage = res.data.result.last_page
         })
@@ -56,9 +63,16 @@ export default {
   },
   created() {
     this.fetchProjects()
-    console.log(this.projects)
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+ul, li {
+  list-style: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+</style>
