@@ -16,9 +16,9 @@
         </div>
       </div>
     </div>
-    <div class="my-4">
+    <div class="my-4" v-if="lastPage > 1">
       <ul class="d-flex gap-5 justify-content-center">
-         <li @click="changePage(n)" v-for="n in lastPage" :key="n" class="cursor-pointer">
+         <li @click="changePage(n)" v-for="n in lastPage" :key="n" :class="n === currentPage ? 'bg-warning' : 'bg-white'" class="cursor-pointer btn">
           {{ n }}
         </li>
       </ul>
@@ -75,4 +75,5 @@ ul, li {
 .cursor-pointer {
   cursor: pointer;
 }
+
 </style>
