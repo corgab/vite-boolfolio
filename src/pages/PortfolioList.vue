@@ -1,5 +1,5 @@
 <template>
-    <h1>My work</h1>
+    <h1 class="text-center">My work</h1>
     <div class="container my-4">
       <div class="row row-cols-1 row-cols-md-3 g-4">
         <div class="col" v-for=" (project,i) in projects" :key="project.id">
@@ -14,7 +14,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ project.title }}</h5>
               <p class="card-text">{{ project.description }}</p>
-              <a href="{{ project.project_url }}" class="btn btn-primary">
+              <a href="{{ project.project_url }}" class="btn btn-primary"> <!-- da sistemare -->
                 Repo <font-awesome-icon :icon="['fab', 'github']" />
               </a>
             </div>
@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="my-4" v-if="lastPage > 1">
-        <div class="d-flex gap-5 justify-content-center">
+        <div class="d-flex gap-2 justify-content-center">
            <p @click="changePage(n)" v-for="n in lastPage" :key="n" :class="n === currentPage ? 'bg-warning' : 'bg-white'" class="cursor-pointer btn">
             {{ n }}
            </p>
@@ -55,7 +55,7 @@ export default {
       axios.get('http://127.0.0.1:8000/api/projects', {
         params: {
           page: this.currentPage,
-          perPage: 9
+          perPage: 6
         }
       })
         .then((res) => {
