@@ -6,24 +6,26 @@
           <div class="card h-100">
             <div class="card-header">
                 <ul class="d-flex gap-1 justify-content-start">
-                  <li v-for="technology in project.technologies">
-                    {{ technology.title }}
-                  </li>
+                    {{ project.type.title }}
                 </ul>
             </div>
             <div class="card-body">
-              <h5 class="card-title">{{ project.title }}</h5>
+              <h5 class="card-title fs-3">{{ project.title }}</h5>
               <p class="card-text">{{ project.description }}</p>
-              <a :href="project.project_url" class="btn btn-primary"> <!-- da sistemare -->
-                Repo <font-awesome-icon :icon="['fab', 'github']" />
-              </a>
+              <div class="d-flex justify-content-between align-items-center">
+                <a :href="project.project_url" class="btn btn-primary">
+                  Repo <font-awesome-icon :icon="['fab', 'github']" />
+                </a>
+                <a :href="`portfolio/${project.slug}`">Read more</a>
+
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="my-4" v-if="lastPage > 1">
         <div class="d-flex gap-2 justify-content-center">
-           <p @click="changePage(n)" v-for="n in lastPage" :key="n" :class="n === currentPage ? 'bg-warning' : 'bg-white'" class="cursor-pointer btn">
+           <p @click="changePage(n)" v-for="n in lastPage" :key="n" :class="n === currentPage ? 'bg-primary text-white' : 'bg-white'" class="cursor-pointer btn">
             {{ n }}
            </p>
         </div>

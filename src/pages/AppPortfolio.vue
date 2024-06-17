@@ -7,18 +7,16 @@
 
   <template v-if="project">
     <div class="container">
-      <h1 class="text-2xl font-bold">{{ project.title }}</h1>
-      <!-- <p class="font-medium">{{ technology.user.name }}</p> -->
-      <TechnologiesPills :technologies="project.technologies" />
-      <p>
-        <!-- {{ project.tags ? project.tags.title : 'Nessuna categoria' }} -->
-          {{ project.type.title }}
-      </p>
-    </div>
-    <div class="container py-6" v-html="project.description"></div>
-    <div class="container">
-      <p>{{ project.created_at }}</p>
-    </div>
+        <h1 class="fs-1">{{ project.title }}</h1>
+        <p>{{ project.type.title }}</p>
+        <p>
+            <TechnologiesPills :technologies="project.technologies" class="d-flex gap-4 p-0"/>
+            {{ project.description }}
+          </p>
+        </div>
+        <div class="container">
+          <p>{{ project.created_at }}</p>
+        </div>
   </template>
 
 </template>
