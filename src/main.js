@@ -18,6 +18,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import AppHome from './pages/AppHome.vue';
 import PostList from './pages/PortfolioList.vue';
 import ContactList from './pages/ContactList.vue';
+import AppPortfolio from './pages/AppPortfolio.vue'
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -27,14 +28,20 @@ const router = createRouter({
             component: AppHome
         },
         {
+            path: '/contact',
+            name: 'contact',
+            component: ContactList
+        },
+        {
             path: '/portfolio',
             name: 'portfolio',
             component: PostList
         },
         {
-            path: '/contact',
-            name: 'contact',
-            component: ContactList
+            path: '/portfolio/:slug',
+            name: 'projects.show',
+            component: AppPortfolio,
+            props: true,
         }
     ]
 });

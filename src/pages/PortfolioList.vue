@@ -14,7 +14,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ project.title }}</h5>
               <p class="card-text">{{ project.description }}</p>
-              <a href="{{ project.project_url }}" class="btn btn-primary"> <!-- da sistemare -->
+              <a :href="project.project_url" class="btn btn-primary"> <!-- da sistemare -->
                 Repo <font-awesome-icon :icon="['fab', 'github']" />
               </a>
             </div>
@@ -32,11 +32,13 @@
   </template>
 
 <script>
+import TechnologiesPills from '../components/TechnologiesPills.vue';
 import axios from 'axios'
 export default {
 
   components: {
-    axios
+    axios,
+    TechnologiesPills
   },
   data() {
     return {
